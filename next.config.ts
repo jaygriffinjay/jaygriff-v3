@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/faq", destination: "/about", permanent: true }];
   },
+  // An old version of the site, kept for show: out of search results. A robots.txt block would hide this header from crawlers
+  async headers() {
+    return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
 };
 
 export default nextConfig;
